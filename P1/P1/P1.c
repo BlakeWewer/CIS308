@@ -42,61 +42,73 @@ void checkEq(char a[])
 	}
 
 	char test[100];
+	test[j] = (char)0;
+	check[j] = (char)0;
 	test[0] = check[0];
 	for (int i = 1; i < strlen(check); i++)
 	{
 		if ((int)check[i] == 40)
 		{
-			test[i] = '(';
+			test[h+1] = '(';
 			h++;
 		}
 		else if ((int)check[i] == 41)
 		{
 			if (test[h] == 40)
 			{
-				test[h] = (char)0;
+				for (int x = h; x < j - 1; x++)
+				{
+					test[x] = test[x + 1];
+				}
 				h--;
 			}
 			else {
-				test[i] = ')';
+				test[h + 1] = ')';
 				h++;
 			}
 		}
 		else if ((int)check[i] == 91)
 		{
-			test[i] = '[';
+			test[h + 1] = '[';
 			h++;
 		}
 		else if ((int)check[i] == 93)
 		{
 			if (test[h] == 91)
 			{
-				test[h] = (char)0;
+				for (int x = h; x < j - 1; x++)
+				{
+					test[x] = test[x + 1];
+				}
 				h--;
 			}
 			else {
-				test[i] = ']';
+				test[h + 1] = ']';
 				h++;
 			}
 		}
 		else if ((int)check[i] == 123)
 		{
-			test[i] = '{';
+			test[h + 1] = '{';
 			h++;
 		}
 		else if ((int)check[i] == 125)
 		{
 			if (test[h] == 123)
 			{
-				test[h] = (char)0;
+				for (int x = h; x < j - 1; x++)
+				{
+					test[x] = test[x + 1];
+				}
 				h--;
 			}
 			else {
-				test[i] = '}';
+				test[h + 1] = '}';
 				h++;
 			}
 		}
 	}
+	test[h+1] = (char)0;
 
 	if (strlen(test) == 0)
 	{
