@@ -29,47 +29,46 @@ int main()
 		
 	}
 	printf_s("Equation: \n");
-	printf_s("%s", eq);
-	printf_s("Solve this shit here.");
+	printf_s("%s\n", eq);
 	scanf_s(" ");
 //	fclose(file);
 }
 
 
 
-void check(char eq[])
+void check(char a[])
 {
 	char check[100];
 	int j = 0;
 	int h = 0;
-	for (int i = 0; i < strlen(eq); i++)
+	for (int i = 0; i < strlen(a); i++)
 	{
-		if ((int)eq[i] == 40)
+		if ((int)a[i] == 40)
 		{
 			check[j] == '(';
 			j++;
 		}
-		else if ((int)eq[i] == 41)
+		else if ((int)a[i] == 41)
 		{
 			check[j] == ')';
 			j++;
 		}
-		else if ((int)eq[i] == 91)
+		else if ((int)a[i] == 91)
 		{
 			check[j] == '[';
 			j++;
 		}
-		else if ((int)eq[i] == 93)
+		else if ((int)a[i] == 93)
 		{
 			check[j] == ']';
 			j++;
 		}
-		else if ((int)eq[i] == 123)
+		else if ((int)a[i] == 123)
 		{
 			check[j] == '{';
 			j++;
 		}
-		else if ((int)eq[i] == 125)
+		else if ((int)a[i] == 125)
 		{
 			check[j] == '}';
 			j++;
@@ -78,38 +77,60 @@ void check(char eq[])
 
 	char test[100];
 	test[0] = check[0];
-	int h = 0;
 	for (int i = 1; i < countof(check); i++)
 	{
-		if ((int)eq[i] == 40)
+		if ((int)check[i] == 40)
 		{
-			check[i] == '(';
+			test[i] == '(';
 			h++;
 		}
-		else if ((int)eq[i] == 41)
+		else if ((int)check[i] == 41)
 		{
-			check[i] == ')';
+			if (test[h] == 41)
+			{
+				test[h] == NULL;
+				h -= 2;
+			}
+			test[i] == ')';
 			h++;
 		}
-		else if ((int)eq[i] == 91)
+		else if ((int)check[i] == 91)
 		{
-			check[i] == '[';
+			test[i] == '[';
 			h++;
 		}
-		else if ((int)eq[i] == 93)
+		else if ((int)check[i] == 93)
 		{
-			check[i] == ']';
+			if (test[h] == 91)
+			{
+				test[h] == NULL;
+				h -= 2;
+			}
+			test[i] == ']';
 			h++;
 		}
-		else if ((int)eq[i] == 123)
+		else if ((int)check[i] == 123)
 		{
-			check[i] == '{';
+			test[i] == '{';
 			h++;
 		}
-		else if ((int)eq[i] == 125)
+		else if ((int)check[i] == 125)
 		{
-			check[i] == '}';
+			if (test[h] == 123)
+			{
+				test[h] == NULL;
+				h -= 2;
+			}
+			test[i] == '}';
 			h++;
 		}
+	}
+
+	if (countof(test) == 0)
+	{
+		printf_s("Equation is Correct.\n\n");
+	}
+	else {
+		printf_s("Equation is Incorrect");
 	}
 }
