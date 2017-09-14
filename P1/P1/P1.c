@@ -112,10 +112,10 @@ void checkEq(char a[])
 
 	if (strlen(test) == 0)
 	{
-		printf_s("Equation is Correct.\n\n");
+		printf_s("Equation is Correct.\n\n\n\n\n");
 	}
 	else {
-		printf_s("Equation is Incorrect");
+		printf_s("Equation is Incorrect.\n\n\n\n\n");
 	}
 }
 
@@ -145,9 +145,9 @@ int main()
 		printf_s("Equation: \n");
 		printf_s("%s\n", eq);
 		checkEq(eq);
-		scanf_s(" ");
 	}
-//	fclose(file);
+	scanf_s(" ");
+	return 1;
 }
 
 
