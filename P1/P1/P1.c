@@ -1,7 +1,28 @@
+/*********************************************************
+* Name: Blake Wewer                                      *
+* Date: 9/14/2017                                        *
+* Assignment: Project 1 - Sequence and Order Validation  *
+**********************************************************
+* This program reads in mathematical expression from a   *
+* text file and tests to see if the parenthesis,         *
+* brackets, and braces are all balanced and correct.     *
+**********************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+/************************************************
+* Description: Checks the balance of the        *
+*			expression                          *
+* Input: an array of characters (the expression)*
+* Output: void									*
+* Precondition: The array of chars passed into  *
+*			checkEq is not null                 *
+* Post condition: The checkEq method will return*
+* whether the passed expression is balanced by  *
+*			the earlier definition.				*
+************************************************/
 void checkEq(char a[])
 {
 	char check[100];
@@ -119,6 +140,17 @@ void checkEq(char a[])
 	}
 }
 
+/************************************************
+* Description: The main method for P1           *
+* Input: none									*
+* Output: int									*
+* Precondition: The file that is to be read in  *
+* is valid and does not contain any invalid     *
+*				characters                      *
+* Post condition: The main method will display  *
+* whether the passed expression is balanced by  *
+*			the earlier definition.				*
+************************************************/
 int main()
 {
 	FILE *file;
