@@ -9,6 +9,7 @@ typedef struct NODE {
 	void insertNode(NODE* newNode);
 	NODE searchTree(NODE* targetNode);
 	void printTree();
+	void releaseMemory();
 };
 
 #endif
