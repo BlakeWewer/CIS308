@@ -43,11 +43,19 @@ struct NODE SearchTree(int target, struct NODE * head)
 
 void PrintTree(struct NODE * head)
 {
-
+	if(head->left != NULL)
+	{
+		PrintTree(head->left);
+	}
+	printf_s("%d ", head->key);
+	if(head->right != NULL)
+	{
+		PrintTree(head->right);
+	}
 }
 
 void ReleaseMemory(struct NODE * head)
 {
-
+	
 }
 
