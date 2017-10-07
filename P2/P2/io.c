@@ -1,7 +1,15 @@
 #include "io.h"
 #include <stdio.h>
 
-
+/*************************************************
+* Description: Displays the main menu and reads	 *
+*		the user's response.					 *
+* Input: none									 *
+* Output: char answer							 *
+* Precondition: none							 *
+* Post condition: the output is a char			 *
+*		corresponding to the menu option desired *
+**************************************************/
 char MainMenu()
 {
 	char answer;
@@ -14,6 +22,15 @@ char MainMenu()
 	return answer;
 }
 
+/*************************************************
+* Description: Displays and reads in the number  *
+*		key from the user						 *
+* Input: none									 *
+* Output: int insert							 *
+* Precondition: none							 *
+* Post condition: the output is an int			 *
+*		corresponding to the key desired		 *
+**************************************************/
 int Insert()
 {
 	int insert;
@@ -27,6 +44,15 @@ int Insert()
 	
 }
 
+/*************************************************
+* Description: Displays and reads in the number  *
+*		to search for from the user     		 *
+* Input: none									 *
+* Output: int result							 *
+* Precondition: none							 *
+* Post condition: the output is an int			 *
+*		corresponding to the target key desired  *
+**************************************************/
 int Search()
 {
 	int target;
@@ -39,6 +65,15 @@ int Search()
 	return target;
 }
 
+/*************************************************
+* Description: Displays the results from the 	 *
+*		BST search								 *
+* Input: int result, int target					 *
+* Output: void									 *
+* Precondition: variables are initialized		 *
+* Post condition: prints the result of the search*
+*		to the console							 *
+**************************************************/
 void PrintSearchResults(int result, int target)
 {
 	if (result == 1)
@@ -50,6 +85,15 @@ void PrintSearchResults(int result, int target)
 	}
 }
 
+/*************************************************
+* Description: Displays all keys in the BST in	 *
+*		order.									 *
+* Input: char pointer result					 *
+* Output: void									 *
+* Precondition: result is initialized			 *
+* Post condition: all elements of the BST are    *
+*		printed to the console in order.		 *
+**************************************************/
 void InorderTraversal(char *result)
 {
 	printf_s("%s", result);

@@ -1,10 +1,11 @@
-/**********************************************
-* Name: (YOUR NAME)										*
-* Date: (THE DUE DATE)									*
+/********************************************************
+* Name: Blake Wewer	      								*
+* Date: October 6th 									*
 * Assignment: Project 2 - Sequence and Order validation *
-***********************************************
-* (WRITE A DESCRIPTION OF THE PROGRAM) *
-***********************************************/
+*********************************************************
+* This program uses console format to receive input for *
+* and display a binary search tree.					    *
+********************************************************/
 
 #include "bst.h"
 #include "io.h"
