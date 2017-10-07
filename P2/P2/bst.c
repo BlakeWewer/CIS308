@@ -2,60 +2,79 @@
 #include <stdio.h>
 
 
-void InsertNode(struct NODE* newNode, struct NODE* head)
+struct NODE* InsertNode(struct NODE* newNode, struct NODE* head)
 {
-	if (head->key == NULL)
+//	struct NODE temp = *head;
+	if (head->key == NULL) 
 	{
-		head = newNode;
+		return head;
 	}
 	else {
 		if (newNode->key < head->key)
 		{
-			insertNode(newNode, head->left);
+			InsertNode(newNode, head->left);
 		}
 		else if (newNode->key > head->key)
 		{
-			insertNode(newNode, head->right);
+			InsertNode(newNode, head->right);
 		}
 	}
 }
 
-/*
-struct NODE SearchTree(int target, struct NODE * head)
+int SearchTree(int target, struct NODE * head)
 {
-	struct NODE* cur;
-	if (head->key == NULL)
+	struct NODE* cur = head;
+	if (cur->key == NULL)
 	{
-		return 
+		return 0;
+	}
+	if (cur->key == target)
+	{
+		return 1;
 	}
 	else {
-		if (newNode->key < head->key)
+		if (target < cur->key)
 		{
-			insertNode(newNode, head->left);
+			struct NODE* l = (cur->left);
+			SearchTree(target, l);
 		}
-		else if (newNode->key > head->key)
+		else if (target > cur->key)
 		{
-			insertNode(newNode, head->right);
+			struct NODE* r = (cur->right);
+			SearchTree(target, r);
 		}
 	}
-	return NODE;
-} */
+	return 0;
+} 
 
-void PrintTree(struct NODE * head)
+char PrintTree(struct NODE * head)
 {
+	char result[100];
 	if(head->left != NULL)
 	{
 		PrintTree(head->left);
 	}
-	printf_s("%d ", head->key);
+
+	int key = head->key;
+	sprintf_s(result, 100, "%d ", key);
+
 	if(head->right != NULL)
 	{
 		PrintTree(head->right);
 	}
+	return *result;
 }
 
 void ReleaseMemory(struct NODE * head)
 {
-	
+	if (head->left != NULL)
+	{
+		free(head->left);
+	}
+	if (head->right != NULL)
+	{
+		free(head->right);
+	}
+	free(*head);
 }
 

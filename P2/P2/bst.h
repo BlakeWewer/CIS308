@@ -1,15 +1,15 @@
 #ifndef BST_H
 #define BST_H
 
-	typedef struct NODE {
+	struct NODE {
 		int key;
 		struct NODE* left;
 		struct NODE* right;
 	};
 
-	void InsertNode(struct NODE* newNode, struct NODE* head);
-	struct NODE SearchTree(int target, struct NODE* head);
-	void PrintTree(struct NODE* head);
+	struct NODE* InsertNode(struct NODE* newNode, struct NODE* head);
+	int SearchTree(int target, struct NODE* head);
+	char PrintTree(struct NODE* head);
 	void ReleaseMemory(struct NODE* head);
 
 #endif
