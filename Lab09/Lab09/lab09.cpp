@@ -9,7 +9,8 @@ int main() {
 	expandSet(set);
 	set->print();
 	scanf_s(" ");
-	return 0;
+	delete set;
+	return 0;	
 }
 
 void expandSet(Set *set) {
