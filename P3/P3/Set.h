@@ -2,7 +2,7 @@
 #define SET_H
 
 class Set {
-private:
+protected:
 	int *nums;
 	int pos;
 	int max;
@@ -12,6 +12,7 @@ public:
 	void add(int);
 	void print();
 	void sort(void);
+	//Need a friend method to access nums array
 };
 
 #endif
