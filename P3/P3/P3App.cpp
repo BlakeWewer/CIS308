@@ -98,10 +98,10 @@ int main()
 	scanf_s(" ");
 	return 0;
 }
-
+/*
 void Union(Set& v1, Set& v2)
 {
 	Set *result = new Set(v1);
 	for(int i = 0; i < v2.)
 }
-
+*/

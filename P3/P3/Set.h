@@ -2,17 +2,17 @@
 #define SET_H
 
 class Set {
-protected:
-	int *nums;
-	int pos;
-	int max;
+protected:	
+	int pos;	
 public:
+	int *nums;
+	int max;
 	Set(int);
-	~Set();
+	~Set();	
 	void add(int);
 	void print();
 	void sort(void);
-	//Need a friend method to access nums array
+
 };
 
 #endif
