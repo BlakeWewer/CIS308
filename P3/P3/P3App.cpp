@@ -69,7 +69,7 @@ int main()
 	cout << endl;
 
 	char response[1];
-	cout << "Enter (i)ntersect, (u)nion, (d)ifference, or (q)uit: ";
+	cout << "\nEnter (i)ntersect, (u)nion, (d)ifference, or (q)uit: ";
 	cin >> response;
 
 	while (toupper(*response) != 'Q')
@@ -94,8 +94,7 @@ int main()
 		cout << "\n\nEnter (i)ntersect, (u)nion, (d)ifference, or (q)uit: ";
 		cin >> response;
 	}
-	
-	scanf_s(" ");
+
 	return 0;
 }
 /*
