@@ -10,7 +10,9 @@
 #include "Set.h"
 using namespace std;
 
+void Intersection(Set&, Set&);
 void Union(Set&, Set&);
+void Difference(Set&, Set&);
 
 int main()
 {
@@ -76,11 +78,11 @@ int main()
 	{
 		if (toupper((*response)) == 'I')
 		{
-			//INTERSECTION
+			Intersection(*v1, *v2);
 		}
 		else if (toupper((*response)) == 'U')
 		{
-			//UNION
+			Union(*v1, *v2);
 		}
 		else if (toupper((*response)) == 'D')
 		{
@@ -96,6 +98,32 @@ int main()
 	}
 
 	return 0;
+}
+
+void Intersection(Set& v1, Set&v2)
+{
+	Set * u;
+	int count = 0;
+	for (int i = 0; i < v1.max; i++)
+	{
+		bool added = false;
+		for (int j = 0; j < v2.max; i++)
+		{				
+			if (v1.nums[i] == v2.nums[j] && !added)
+			{
+				if (count == 0)
+				{
+					u = new Set(v1.nums[i]);
+					count++;
+				} else {
+					u->add(v1.nums[i]);
+				}
+				added = true;
+			}
+		}
+	}
+
+	u->print();
 }
 
 void Union(Set& v1, Set& v2)
@@ -122,5 +150,49 @@ void Union(Set& v1, Set& v2)
 			u->add(v2.nums[i]);
 		}
 	}
+	u->print();
+}
+
+void Difference(Set& v1, Set& v2)
+{
+	Set * u;
+	bool init = false;
+	for (int i = 0; i < v1.max; i++)
+	{
+		bool shared = false;
+		for (int j = 0; j < v2.max; i++)
+		{
+			if (v1.nums[i] == v2.nums[j])
+				shared = true;
+		}
+		if (!shared && init)
+		{
+			u->add(v1.nums[i]);
+		}
+		if (!shared && !init)
+		{
+			u = new Set(v1.nums[i]);
+			init = true;
+		}
+	}
+	for (int i = 0; i < v2.max; i++)
+	{
+		bool shared = false;
+		for (int j = 0; j < v1.max; i++)
+		{
+			if (v2.nums[i] == v1.nums[j])
+				shared = true;
+		}
+		if (!shared && init)
+		{
+			u->add(v2.nums[i]);
+		}
+		if (!shared && !init)
+		{
+			u = new Set(v2.nums[i]);
+			init = true;
+		}
+	}
+
 	u->print();
 }
