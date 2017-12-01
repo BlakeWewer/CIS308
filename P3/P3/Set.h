@@ -6,6 +6,7 @@ protected:
 	int pos;	
 public:
 	int *nums;
+	int size;
 	int max;
 	Set(int);
 	~Set();	

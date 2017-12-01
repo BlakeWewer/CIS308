@@ -103,36 +103,46 @@ int main()
 void Intersection(Set& v1, Set&v2)
 {
 	Set * u;
-	int count = 0;
-	for (int i = 0; i < v1.max; i++)
+	bool init = false;
+	int i = 0;
+	while (!init && i < v1.size)
 	{
 		bool added = false;
-		for (int j = 0; j < v2.max; i++)
-		{				
+		for (int j = 0; j < v2.size; i++)
+		{
 			if (v1.nums[i] == v2.nums[j] && !added)
 			{
-				if (count == 0)
-				{
-					u = new Set(v1.nums[i]);
-					count++;
-				} else {
-					u->add(v1.nums[i]);
-				}
+				u = new Set(v1.nums[i]);
+				init = true;
 				added = true;
 			}
 		}
+		i++;
 	}
-
+	while (i < v1.size)
+	{
+		bool added = false;
+		for (int j = 0; j < v2.size; i++)
+		{
+			if (v1.nums[i] == v2.nums[j] && !added)
+			{
+				u->add(v1.nums[i]);
+				added = true;
+			}
+		}
+		i++;
+	}
+	
 	u->print();
 }
 
 void Union(Set& v1, Set& v2)
 {
 	Set *u = new Set(v1);
-	int min = u->max;
-	if (v2.max < min)
-		min = v2.max;
-	for (int i = 0; i < v2.max; i++)
+	int min = u->size;
+	if (v2.size < min)
+		min = v2.size;
+	for (int i = 0; i < v2.size; i++)
 	{
 		bool duplicate = false;
 		for (int j = 0; j < min; i++)
@@ -156,42 +166,75 @@ void Union(Set& v1, Set& v2)
 void Difference(Set& v1, Set& v2)
 {
 	Set * u;
+	int i = 0;
 	bool init = false;
-	for (int i = 0; i < v1.max; i++)
+	while (i < v1.size && !init)
 	{
 		bool shared = false;
-		for (int j = 0; j < v2.max; i++)
+		for (int j = 0; j < v2.size; i++)
 		{
 			if (v1.nums[i] == v2.nums[j])
+			{
 				shared = true;
+			}
 		}
-		if (!shared && init)
-		{
-			u->add(v1.nums[i]);
-		}
-		if (!shared && !init)
+		if (!shared)
 		{
 			u = new Set(v1.nums[i]);
 			init = true;
 		}
+		i++;
 	}
-	for (int i = 0; i < v2.max; i++)
+	while (i < v1.size && init)
 	{
 		bool shared = false;
-		for (int j = 0; j < v1.max; i++)
+		for (int j = 0; j < v2.size; i++)
+		{
+			if (v1.nums[i] == v2.nums[j])
+			{
+				shared = true;
+			}
+		}
+		if (!shared)
+		{
+			u->add(v1.nums[i]);
+		}
+		i++;
+	}
+
+	i = 0;
+	while (i < v2.size && !init)
+	{
+		bool shared = false;
+		for (int j = 0; j < v1.size; i++)
 		{
 			if (v2.nums[i] == v1.nums[j])
+			{
 				shared = true;
+			}
 		}
-		if (!shared && init)
-		{
-			u->add(v2.nums[i]);
-		}
-		if (!shared && !init)
+		if (!shared)
 		{
 			u = new Set(v2.nums[i]);
 			init = true;
 		}
+		i++;
+	}
+	while (i < v2.size && init)
+	{
+		bool shared = false;
+		for (int j = 0; j < v1.size; i++)
+		{
+			if (v2.nums[i] == v1.nums[j])
+			{
+				shared = true;
+			}
+		}
+		if (!shared)
+		{
+			u->add(v2.nums[i]);
+		}
+		i++;
 	}
 
 	u->print();

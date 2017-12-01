@@ -6,6 +6,7 @@ Set::Set(int max) {
 	nums = new int[max];
 	pos = 0;
 	this->max = max;
+	size = 1;
 }
 
 Set::~Set() {
@@ -31,6 +32,7 @@ void Set::add(int elem) {
 
 		nums = temp;
 		this->max = max;
+		size++;
 		return;
 	}
 
