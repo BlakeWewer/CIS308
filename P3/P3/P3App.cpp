@@ -97,10 +97,30 @@ int main()
 
 	return 0;
 }
-/*
+
 void Union(Set& v1, Set& v2)
 {
-	Set *result = new Set(v1);
-	for(int i = 0; i < v2.)
+	Set *u = new Set(v1);
+	int min = u->max;
+	if (v2.max < min)
+		min = v2.max;
+	for (int i = 0; i < v2.max; i++)
+	{
+		bool duplicate = false;
+		for (int j = 0; j < min; i++)
+		{
+			if (i >= min)
+			{
+				u->add(v2.nums[i]);
+			}else if (v2.nums[i] == u->nums[i])
+			{
+				duplicate = true;
+			}
+		}
+		if (!duplicate)
+		{
+			u->add(v2.nums[i]);
+		}
+	}
+	u->print();
 }
-*/
