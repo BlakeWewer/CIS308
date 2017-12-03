@@ -1,3 +1,14 @@
+/**********************************************
+* Name: Blake Wewer							  *
+* Date: 12/3/17								  *
+* Assignment: Project 3: Sets				  *
+***********************************************
+* This is the file that implements the header *
+*  file Set.h.  It includes a constructor, an *
+*  add method, a print method, a sort method, *
+*  and an operator[] method.                  *
+***********************************************/
+
 #include "Set.h"
 #include <iostream>
 using namespace std;

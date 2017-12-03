@@ -1,3 +1,21 @@
+/**********************************************
+* Name: Blake Wewer							  *
+* Date: 12/3/17								  *
+* Assignment: Project 3: Sets				  *
+***********************************************
+* The main.cpp file contains the main()		  *
+*  method.  It asks the user to input two	  *
+*  vectors which are used to create two sets. *
+*  The user is then given the option to print *
+*  out either their intersection, union,	  *
+*  difference, or to quit the program		  *
+*  completely.  When one is selected, the	  *
+*  sets are placed into a new one according   *
+*  to the selected modification and printed   *
+*  out onto the console.  Memory is released  *
+*  at the end of execution.					  *
+***********************************************/
+
 #include <iostream>
 #include <stdio.h>
 #include <string>
@@ -96,6 +114,8 @@ int main()
 		cout << "\n\nEnter (i)ntersect, (u)nion, (d)ifference, or (q)uit: ";
 		cin >> response;
 	}
+	delete v1;
+	delete v2;
 
 	return 0;
 }
@@ -123,7 +143,10 @@ void Intersection(Set& v1, Set&v2)
 	{
 		u->add(vectU[i]);
 	}
+
+	cout << "\nIntersection: ";
 	u->print();
+	delete u;
 }
 
 void Union(Set& v1, Set& v2)
@@ -161,7 +184,10 @@ void Union(Set& v1, Set& v2)
 	{
 		u->add(vectU[i]);
 	}
+
+	cout << "\nUnion: ";
 	u->print();
+	delete u;
 }
 
 void Difference(Set& v1, Set& v2)
@@ -212,5 +238,8 @@ void Difference(Set& v1, Set& v2)
 	{
 		u->add(vectU[i]);
 	}
+
+	cout << "\nDifference: ";
 	u->print();
+	delete u;
 }
