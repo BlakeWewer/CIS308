@@ -13,6 +13,7 @@ public:
 	void add(int);
 	void print();
 	void sort(void);
+	int operator[](int);
 
 };
 

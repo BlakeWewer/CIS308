@@ -70,25 +70,25 @@ int main()
 	v2->print();
 	cout << endl;
 
-	char response[1];
+	char response;
 	cout << "\nEnter (i)ntersect, (u)nion, (d)ifference, or (q)uit: ";
 	cin >> response;
 
-	while (toupper(*response) != 'Q')
+	while ((char)toupper(response) != 'Q')
 	{
-		if (toupper((*response)) == 'I')
+		if ((char)toupper(response) == 'I')
 		{
 			Intersection(*v1, *v2);
 		}
-		else if (toupper((*response)) == 'U')
+		else if ((char)toupper(response) == 'U')
 		{
 			Union(*v1, *v2);
 		}
-		else if (toupper((*response)) == 'D')
+		else if ((char)toupper(response) == 'D')
 		{
-			//DIFFERENCE
+			Difference(*v1, *v2);
 		}
-		else if (toupper((*response)) == 'Q')
+		else if ((char)toupper(response) == 'Q')
 		{
 			break;
 		}
@@ -102,76 +102,78 @@ int main()
 
 void Intersection(Set& v1, Set&v2)
 {
-	Set * u;
-	bool init = false;
+	vector<int> vectU;
 	int i = 0;
-	while (!init && i < v1.size)
-	{
-		bool added = false;
-		for (int j = 0; j < v2.size; i++)
-		{
-			if (v1.nums[i] == v2.nums[j] && !added)
-			{
-				u = new Set(v1.nums[i]);
-				init = true;
-				added = true;
-			}
-		}
-		i++;
-	}
 	while (i < v1.size)
 	{
 		bool added = false;
-		for (int j = 0; j < v2.size; i++)
+		for (int j = 0; j < v2.size; j++)
 		{
-			if (v1.nums[i] == v2.nums[j] && !added)
+			if ((v1.nums[i] == v2.nums[j]) && !added)
 			{
-				u->add(v1.nums[i]);
+				vectU.push_back(v1.nums[i]);
 				added = true;
 			}
 		}
 		i++;
 	}
-	
+
+	Set * u = new Set(vectU.size());
+	for (int i = 0; i < vectU.size(); i++)
+	{
+		u->add(vectU[i]);
+	}
 	u->print();
 }
 
 void Union(Set& v1, Set& v2)
 {
-	Set *u = new Set(v1);
-	int min = u->size;
+	vector<int> vectU;
+	Set *u;
+	int min = v1.size;
 	if (v2.size < min)
 		min = v2.size;
+	for (int i = 0; i < v1.size; i++)
+	{
+		vectU.push_back(v1.nums[i]);
+	}
 	for (int i = 0; i < v2.size; i++)
 	{
 		bool duplicate = false;
-		for (int j = 0; j < min; i++)
+		for (int j = 0; j < v1.size; j++)
 		{
 			if (i >= min)
 			{
-				u->add(v2.nums[i]);
-			}else if (v2.nums[i] == u->nums[i])
+				vectU.push_back(v2.nums[i]);
+			}else if (v2.nums[i] == vectU.at(i))
 			{
 				duplicate = true;
 			}
 		}
 		if (!duplicate)
 		{
-			u->add(v2.nums[i]);
+			vectU.push_back(v2.nums[i]);
 		}
+	}
+
+	u = new Set(vectU.size());
+	for (int i = 0; i < vectU.size(); i++)
+	{
+		u->add(vectU[i]);
 	}
 	u->print();
 }
 
 void Difference(Set& v1, Set& v2)
 {
+	vector<int> vectU;
 	Set * u;
 	int i = 0;
 	bool init = false;
-	while (i < v1.size && !init)
+	while (i < v1.size)
 	{
 		bool shared = false;
-		for (int j = 0; j < v2.size; i++)
+		for (int j = 0; j < v2.size; j++)
 		{
 			if (v1.nums[i] == v2.nums[j])
 			{
@@ -180,33 +182,17 @@ void Difference(Set& v1, Set& v2)
 		}
 		if (!shared)
 		{
-			u = new Set(v1.nums[i]);
+			vectU.push_back(v1.nums[i]);
 			init = true;
-		}
-		i++;
-	}
-	while (i < v1.size && init)
-	{
-		bool shared = false;
-		for (int j = 0; j < v2.size; i++)
-		{
-			if (v1.nums[i] == v2.nums[j])
-			{
-				shared = true;
-			}
-		}
-		if (!shared)
-		{
-			u->add(v1.nums[i]);
 		}
 		i++;
 	}
 
 	i = 0;
-	while (i < v2.size && !init)
+	while (i < v2.size)
 	{
 		bool shared = false;
-		for (int j = 0; j < v1.size; i++)
+		for (int j = 0; j < v1.size; j++)
 		{
 			if (v2.nums[i] == v1.nums[j])
 			{
@@ -215,27 +201,16 @@ void Difference(Set& v1, Set& v2)
 		}
 		if (!shared)
 		{
-			u = new Set(v2.nums[i]);
+			vectU.push_back(v2.nums[i]);
 			init = true;
 		}
 		i++;
 	}
-	while (i < v2.size && init)
-	{
-		bool shared = false;
-		for (int j = 0; j < v1.size; i++)
-		{
-			if (v2.nums[i] == v1.nums[j])
-			{
-				shared = true;
-			}
-		}
-		if (!shared)
-		{
-			u->add(v2.nums[i]);
-		}
-		i++;
-	}
 
+	u = new Set(vectU.size());
+	for (int i = 0; i < vectU.size(); i++)
+	{
+		u->add(vectU[i]);
+	}
 	u->print();
 }

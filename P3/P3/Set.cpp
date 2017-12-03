@@ -6,8 +6,9 @@ Set::Set(int max) {
 	nums = new int[max];
 	pos = 0;
 	this->max = max;
-	size = 1;
+	size = 0;
 }
+
 
 Set::~Set() {
 	delete[] nums;
@@ -42,6 +43,7 @@ void Set::add(int elem) {
 	}
 
 	nums[pos++] = elem;
+	size++;
 }
 
 void Set::print() {
@@ -70,4 +72,7 @@ void Set::sort()
 	}
 }
 
-
+int Set::operator[](int x)
+{
+	return (*this).nums[x];
+}
