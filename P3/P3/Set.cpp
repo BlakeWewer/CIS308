@@ -26,6 +26,13 @@ Set::~Set() {
 }
 
 void Set::add(int elem) {
+	for (int i = 0; i < pos; i++)
+	{
+		if (elem == nums[i])
+		{
+			return;
+		}
+	}
 	if (pos >= max)
 	{
 		while (pos >= max)
@@ -40,20 +47,16 @@ void Set::add(int elem) {
 				temp[i] = nums[i];
 			}
 		}
-		temp[pos] = elem;
-
 		nums = temp;
+
+		nums[pos] = elem;
+		pos++;
 		this->max = max;
 		size++;
 		return;
 	}
-
-	for (int i = 0; i < pos; i++)
-	{
-		if (nums[i] == elem) return;
-	}
-
-	nums[pos++] = elem;
+	nums[pos] = elem;
+	pos++;
 	size++;
 }
 
@@ -69,7 +72,7 @@ void Set::print() {
 
 void Set::sort()
 {
-	for (int j = 0; j < pos; j++)
+/*	for (int j = 0; j < pos; j++)
 	{
 		for (int i = 0; i < max - 1; i++)
 		{
@@ -78,6 +81,19 @@ void Set::sort()
 				int temp = nums[i];
 				nums[i] = nums[i + 1];
 				nums[i + 1] = temp;
+			}
+		}
+	}*/
+
+	for (int i = 0; i < pos - 1; i++)
+	{
+		for (int j = 0; j < pos - i - 1; j++)
+		{
+			if (nums[j] > nums[j + 1])
+			{
+				int temp = nums[j];
+				nums[j] = nums[j + 1];
+				nums[j + 1] = temp;
 			}
 		}
 	}

@@ -38,49 +38,33 @@ int main()
 	cout << "Input Vector 1 (like num1,num2,...,numN): ";
 	cin >> s;
 
-	vector<int> vect1;
-	vector<int> vect2;
+	Set * v1 = new Set(1);
+	Set * v2 = new Set(1);
 	stringstream stream(s);
 
 	int i;
-
 	while (stream >> i)
 	{
-		vect1.push_back(i);
-
+		v1->add(i);
 		if (stream.peek() == ',' || stream.peek() == ' ' || stream.peek() == '(' || stream.peek() == ')')
 			stream.ignore();
 	}
+	v1->sort();
 
-	sort(vect1.begin(), vect1.end());
-
-	Set *v1 = new Set(vect1.size());
-	for (int i = 0; i < vect1.size(); i++)
-	{
-		v1->add(vect1[i]);
-	}
-
+	string s2;
 	cout << "Input Vector 2 (like num1,num2,...,numN): ";
-	cin >> s;
-	stringstream stream2(s);
+	cin >> s2;
+	stringstream stream2(s2);
 
 	int j;
-
 	while (stream2 >> j)
 	{
-		vect2.push_back(j);
-
+		v2->add(j);
 		if (stream2.peek() == ',' || stream2.peek() == ' ' || stream2.peek() == '(' || stream2.peek() == ')')
 			stream2.ignore();
 	}
 
-	sort(vect2.begin(), vect2.end());
-
-	Set * v2 = new Set(vect2.size());
-	for (int i = 0; i < vect2.size(); i++)
-	{
-		v2->add(vect2[i]);
-	}
+	v2->sort();
 
 	cout << "\n\n" << "The sorted sets are: " << endl;
 	v1->print();
@@ -123,25 +107,18 @@ int main()
 void Intersection(Set& v1, Set&v2)
 {
 	vector<int> vectU;
+	Set * u = new Set(1);
 	int i = 0;
 	while (i < v1.size)
 	{
-		bool added = false;
 		for (int j = 0; j < v2.size; j++)
 		{
-			if ((v1.nums[i] == v2.nums[j]) && !added)
+			if ((v1.nums[i] == v2.nums[j]))
 			{
-				vectU.push_back(v1.nums[i]);
-				added = true;
+				u->add(v1.nums[i]);
 			}
 		}
 		i++;
-	}
-
-	Set * u = new Set(vectU.size());
-	for (int i = 0; i < vectU.size(); i++)
-	{
-		u->add(vectU[i]);
 	}
 
 	cout << "\nIntersection: ";
@@ -151,38 +128,17 @@ void Intersection(Set& v1, Set&v2)
 
 void Union(Set& v1, Set& v2)
 {
-	vector<int> vectU;
-	Set *u;
+	Set * u = new Set(1);;
 	int min = v1.size;
 	if (v2.size < min)
 		min = v2.size;
 	for (int i = 0; i < v1.size; i++)
 	{
-		vectU.push_back(v1.nums[i]);
+		u->add(v1.nums[i]);
 	}
 	for (int i = 0; i < v2.size; i++)
 	{
-		bool duplicate = false;
-		for (int j = 0; j < v1.size; j++)
-		{
-			if (i >= min)
-			{
-				vectU.push_back(v2.nums[i]);
-			}else if (v2.nums[i] == vectU.at(i))
-			{
-				duplicate = true;
-			}
-		}
-		if (!duplicate)
-		{
-			vectU.push_back(v2.nums[i]);
-		}
-	}
-
-	u = new Set(vectU.size());
-	for (int i = 0; i < vectU.size(); i++)
-	{
-		u->add(vectU[i]);
+		u->add(v2.nums[i]);
 	}
 
 	cout << "\nUnion: ";
@@ -192,10 +148,8 @@ void Union(Set& v1, Set& v2)
 
 void Difference(Set& v1, Set& v2)
 {
-	vector<int> vectU;
-	Set * u;
+	Set * u = new Set(1);
 	int i = 0;
-	bool init = false;
 	while (i < v1.size)
 	{
 		bool shared = false;
@@ -208,8 +162,7 @@ void Difference(Set& v1, Set& v2)
 		}
 		if (!shared)
 		{
-			vectU.push_back(v1.nums[i]);
-			init = true;
+			u->add(v1.nums[i]);
 		}
 		i++;
 	}
@@ -227,16 +180,9 @@ void Difference(Set& v1, Set& v2)
 		}
 		if (!shared)
 		{
-			vectU.push_back(v2.nums[i]);
-			init = true;
+			u->add(v2.nums[i]);
 		}
 		i++;
-	}
-
-	u = new Set(vectU.size());
-	for (int i = 0; i < vectU.size(); i++)
-	{
-		u->add(vectU[i]);
 	}
 
 	cout << "\nDifference: ";
